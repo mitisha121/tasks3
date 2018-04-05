@@ -2,15 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function User(params) {
-  return <p>{params.user.name} </p>;
+  return <p> {params.user.name} - <Link to={"/users/"+params.user.id}>User</Link> </p>;
 }
 
 export default function Users(params) {
-  let users = _.map(params.users, (uu) => 
-  <li key={uu.id}> { uu.name } </li> );
+  let users = _.map(params.users, (uu) =>  <User key={uu.id} user={ uu } /> );
   return <div>
-      <ul>
+     
     { users }
-    </ul>
+
   </div>;
 }

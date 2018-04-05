@@ -21,7 +21,13 @@ function TaskForm(params) {
     function submit(ev) {
         console.log("Should create post.");
         console.log(params.form);
-        api.submit_post(params.form);
+        api.submit_task(params.form);
+    }
+
+    function clear(ev){
+        params.dispatch({type: 'CLEAR_FORM'});
+       // params.dispatch(action)
+        //api.clear_task(params.form);
     }
 
 
@@ -32,6 +38,7 @@ function TaskForm(params) {
     <FormGroup>
       <Label for="user_id">User</Label>
       <Input type="select" name="user_id" value={params.form.user_id} onChange={update}>
+        <option></option>
         { users }
       </Input>
     </FormGroup>
@@ -45,13 +52,14 @@ function TaskForm(params) {
     </FormGroup>
     <FormGroup>
       <Label for="time">Time</Label>
-      <Input type="number" name="time" value={params.time} onChange={update} />
+      <Input type="number" name="time" step="15" value={params.time} onChange={update} />
     </FormGroup>
     <FormGroup>
       <Label for="completed">Completed</Label>
       <Input type="checkbox" name="completed" value={params.form.completed} onChange={update}/>
     </FormGroup>
-    <Button onClick={ submit }>Create Task</Button>
+    <Button onClick={ submit } color="primary">Create Task</Button> &nbsp;
+    <Button onClick={clear}> Clear </Button>
   </div>;
 }
 

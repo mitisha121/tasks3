@@ -7,6 +7,8 @@ import Nav from './nav';
 import Tasks from './tasks';
 import TaskForm from './taskform';
 import Users from './users';
+import Task from './task';
+import RegisterForm from './registerform';
 
 
 export default function tasks3_init(store) {
@@ -36,13 +38,18 @@ let Tasks3 = connect((state) => state)((props) => {
                 <Users users={props.users} />
             </div>
             }/>
+            <Route path="/register" exact={true} render={() =>
+            <div className="col">
+                <RegisterForm users={props.users} />
+            </div>
+            }/>
             <Route path="/users/:user_id" exact={true} render={({match}) =>
-                <Task tasks={_.filter(props.users, (tt) =>{
+                <Task tasks={_.filter(props.tasks, (tt) =>{
                     if (tt.user) {
                         return match.params.user_id == tt.user.id;
                     }
                     else{
-                        return false;
+                       return false;
                     } 
                 })
                 } />

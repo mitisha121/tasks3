@@ -34,7 +34,7 @@ class TheServer {
       method: "post",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
-      data: JSON.stringify({ post: data }),
+      data: JSON.stringify({ token: data.token, task: data }),
       success: (resp) => {
         store.dispatch({
           type: 'ADD_TASK',
@@ -43,6 +43,37 @@ class TheServer {
       },
     });
   }
+
+  submit_login(data) {
+    $.ajax("/api/v1/token", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify(data),
+      success: (resp) => {
+        store.dispatch({
+          type: 'SET_TOKEN',
+          token: resp,
+        });
+      },
+    });
+  }
+
+  submit_register(data) {
+    $.ajax("/api/v1/user", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({user: data}),
+      success: (resp) => {
+        store.dispatch({
+          type: 'ADD_USER',
+          user: resp.data,
+        });
+      },
+    });
+  }
+
 }
 
 export default new TheServer();

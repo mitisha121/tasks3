@@ -6,7 +6,7 @@ export default function Task(params) {
   return <Card>
     <CardBody>
       <div>
-        <p> Assigned to: { task.user_id } </p>
+        <p> Assigned to: { task.user.name } </p>
         <p> Title: { task.title } </p>
         <p> Description: { task.desc } </p>
         <p> Time taken: { task.time } </p>
