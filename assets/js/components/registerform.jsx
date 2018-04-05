@@ -28,6 +28,12 @@ function RegisterForm(params) {
         api.submit_register(params.regform);
     }
 
+    function clear(ev){
+        params.dispatch({type: 'CLEAR_REGISTER_FORM'});
+       // params.dispatch(action)
+        //api.clear_task(params.form);
+    }
+
 
     return(<div>
     <FormGroup>
@@ -44,6 +50,7 @@ function RegisterForm(params) {
     </FormGroup>
     
     <Button onClick={ submit } color="primary">Create User</Button> &nbsp;
+    <Button onClick={clear}> Clear </Button>
     </div>);
 }
 

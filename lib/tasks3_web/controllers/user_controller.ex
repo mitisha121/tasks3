@@ -12,6 +12,9 @@ defmodule Tasks3Web.UserController do
   end
 
   def create(conn, %{"user" => user_params}) do
+    #IO.puts(user)
+    #pw = Comeonin.Argon2.hashpwsalt(user_params.password)
+    #u = %{ name: user_params.name, email: user_params.email, password_hash: pw}
     with {:ok, %User{} = user} <- Users.create_user(user_params) do
       conn
       |> put_status(:created)
@@ -24,9 +27,9 @@ defmodule Tasks3Web.UserController do
     user = Users.get_user!(id)
     render(conn, "show.json", user: user)
   end
-
   def update(conn, %{"id" => id, "user" => user_params}) do
     user = Users.get_user!(id)
+
 
     with {:ok, %User{} = user} <- Users.update_user(user, user_params) do
       render(conn, "show.json", user: user)

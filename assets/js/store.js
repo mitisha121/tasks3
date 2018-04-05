@@ -59,6 +59,8 @@ function regform(state = empty_register, action){
     switch (action.type){
         case 'UPDATE_REGISTER_FORM':
             return Object.assign({}, state, action.data);
+        case 'CLEAR_REGISTER_FORM':
+            return empty_register;
         default:
             return state;
     }
@@ -93,7 +95,6 @@ let empty_form = {
   time: 0,
   completed: false,
   token: "",
-  tokenreg: "",
 };
 
 

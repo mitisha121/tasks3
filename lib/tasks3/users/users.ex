@@ -55,6 +55,16 @@ defmodule Tasks3.Users do
       {:error, %Ecto.Changeset{}}
 
   """
+
+  def pwhash(attrs) do
+    pwd = Comeonin.Argon2.hashpwsalt(attrs.password)
+    %{
+      name: attrs.name,
+      email: attrs.email,
+      password_hash: pwd
+    }
+  end
+
   def create_user(attrs \\ %{}) do
     %User{}
     |> User.changeset(attrs)
