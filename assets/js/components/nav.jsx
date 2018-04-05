@@ -55,11 +55,17 @@ let LoginForm = connect(({login}) => {return {login};})((props) => {
       </Form>
     </div>;
   });
+
+  
   
 
 let Session = connect(({token}) => { return {token};})((props) => {
+    function delete_token(ev){
+        props.dispatch({ type: 'DELETE_TOKEN' })
+    }
     return <div className="navbar-text">
     User id = { props.token.user_id }
+    <Button onClick={delete_token}> Logout </Button>
   </div>;
 });
 
@@ -72,7 +78,9 @@ function Nav(props) {
         session_info = <LoginForm />;
     }
 
-    return<nav className="navbar navbar-dark bg-dark navbar-expand">
+    
+    
+        return<nav className="navbar navbar-dark bg-dark navbar-expand">
         <span className="navbar-brand">
             Task Tracker
         </span>
@@ -85,7 +93,8 @@ function Nav(props) {
             </NavItem>
         </ul>
         { session_info }
-    </nav>;
+    </nav>; 
+    
 }
 
 function state2props(state) {

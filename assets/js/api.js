@@ -59,6 +59,7 @@ class TheServer {
     });
   }
 
+
   submit_register(data) {
     $.ajax("/api/v1/user", {
       method: "post",

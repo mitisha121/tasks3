@@ -12,5 +12,6 @@ defmodule Tasks3Web.TokenController do
             |> render("token.json", user: user, token: token)
         end
     end
+    
 
 end

@@ -29,6 +29,8 @@ import deepFreeze from 'deep-freeze';
      switch (action.type){
         case 'SET_TOKEN':
             return action.token;
+        case 'DELETE_TOKEN':
+            return "";
         default:
             return state;
      }
